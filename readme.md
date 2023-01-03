@@ -12,9 +12,6 @@ La soluzione attuale è totalmente customizzabile, lo script js agisce per confi
 Basta inserire il plugin nella cartella wp-content/plugins e attivarlo o eventualmente installarlo tramite il pannello di amministrazione di Wordpress assicurandosi di aver compresso la cartella in un file zip.
 
 ### Requisiti
-* Wordpress 4.9.8
-* PHP 7.2.10
-* MySQL 5.7.24
 * Caldera Forms 1.9.3
 
 Questa è la configurazione su cui è stato realizzato il plugin, non è stato testato su altre versioni.
