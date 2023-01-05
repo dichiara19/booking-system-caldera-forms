@@ -1,19 +1,7 @@
 jQuery(document).ready(function ($) {
-  function getDataSmart1() {
-    $.ajax({
-      url: './wp-content/plugins/booking-system-caldera-forms-ajax/booking-system-caldera-forms-ajax.php',
-      type: 'GET', 
-      dataType: 'json',
-      success: function(data) {
-        dati_js = data;
-      }
-    });
-  }
-  
-  console.log(dati_js);
+    console.log(dati_js);
   $('#fld_7991005_3_opt1641714, #fld_7991005_3_opt1860754, #fld_7991005_3_opt1238681, #fld_7991005_3_opt1108337, #fld_7991005_3_opt2055191, #fld_7991005_3_opt1209543').click(function () {
     // Chiamata della funzione getData() per effettuare la richiesta AJAX
-    getDataSmart1();
     console.log("Evento al click effettuato");
     setTimeout(function () {
       // Itera su ogni elemento dell'array dati_js
