@@ -1,35 +1,34 @@
 # Caldera Forms Booking System
-Questo plugin è stato realizzato per creare un sistema di prenotazione sfruttando l'ormai passato Caldera Forms. Il plugin è stato realizzato per un progetto specifico ma è stato pensato per essere riutilizzato in altri progetti. Non è stato testato con altri plugin di prenotazione, ma è stato testato solo con Caldera Forms.
-Sfrutta la connessione al database per leggere gli input di un determinato field e controllare se sono già stati inseriti. In caso affermativo, non permette l'inserimento di nuovi valori uguali.
+This plugin was created to create a booking system using the now-past Caldera Forms. The plugin was made for a specific project but was meant to be reused in other projects. It has not been tested with other booking plugins, but has only been tested with Caldera Forms. Use the database connection to read the inputs of a given field and check if they have already been entered. If so, it does not allow the inclusion of new equal values.
 
-Non è necessario tracciare l'id del form, basta inserire il nome del field che si vuole controllare in quanto univoco. 
+It is not necessary to trace the form id, just enter the name of the field you want to check as unique.
 
-Non avendo realizzato un area di amministrazione, è necessario sostiuire l'ID del field manualmente sia nel file php che nel file js.
+Having not realized an administration area, it is necessary to replace the field ID manually both in the php file and in the js file.
 
-La soluzione attuale è totalmente customizzabile, lo script js agisce per configurazione su un campo select di Caldera Forms. Il file php è stato pensato per essere riutilizzato in altri progetti, ma è necessario sostituire l'ID del field manualmente come già citato precedentemente per far sì che la query funzioni correttamente.
+The current solution is totally customizable, the js script acts by configuration on a Caldera Forms select field. The php file was meant to be reused in other projects, but you need to replace the field ID manually as mentioned above to make the query work properly.
 
 ## Installazione
-Basta inserire il plugin nella cartella wp-content/plugins e attivarlo o eventualmente installarlo tramite il pannello di amministrazione di Wordpress assicurandosi di aver compresso la cartella in un file zip.
+Just insert the plugin in the wp-content/plugins folder and activate it or eventually install it via the Wordpress admin panel making sure you have compressed the folder into a zip file.
 
 ### Requisiti
 * Caldera Forms 1.9.3
 
-Questa è la configurazione su cui è stato realizzato il plugin, non è stato testato su altre versioni.
+This is the configuration on which the plugin was made, it has not been tested on other versions.
 
-#### Plugin
+### Plugin
 * [Caldera Forms](https://wordpress.org/plugins/caldera-forms/)
 
-A breve renderà disponibile una copia della versione di Caldera Forms utilizzata per il progetto sul mio profilo Github.
+### Utilizzo
 
-##### Utilizzo
+Make sure to replace the database prefix in the php file and the field ID in the js file.
+We have to make sure that the ID is correct because the one entered via Caldera Forms admin panel is the one that is used for the query but not the ID that is used for the select field that in my case corresponded to the attribute 'name'.
 
-Assicurarsi di sostuire il prefisso del database nel file php e l'ID del field nel file js.
-Bisogna assicurarsi che l'ID sia corretto in quanto quello inserito tramite pannello di amministrazione di Caldera Forms è quello che viene utilizzato per la query ma non l'ID che viene utilizzato per il campo select che nel mio caso corrispondeva all'attributo 'name'.
+So: The select field ID displayed in the Caldera Forms admin panel is the one that should be used for the query and not the one that is used for the select field.
 
-Quindi: l'ID del campo select visualizzato nel pannello di amministrazione di Caldera Forms è quello che va utilizzato per la query e non quello che viene utilizzato per il campo select.
+#### Altre informazioni
 
-###### Altre informazioni
+The code uses wp_enqueue_script to load the js script, so you need to make sure that the js file is loaded after the php file is loaded. This was done using the 'priority' parameter of wp_enqueue_script. Doing so runs the script on all pages regardless of the form you are using. To avoid using the 'priority' parameter, you can use the 'caldera_forms_render_get_form' filter to load the script only when the form is loaded. Or load the script only on the page where the form is located using wp_localize_script by calling the js file only on the page where the form is located. The solution is aimed at being immediately testable in all installations and then make the necessary customizations in terms of efficiency, performance etc.
 
-Il codice usa wp_enqueue_script per caricare lo script js, quindi è necessario assicurarsi che il file js sia caricato dopo che il file php è stato caricato. Per farlo è stato utilizzato il parametro 'priority' di wp_enqueue_script. Così facendo lo script viene eseguito su tutte le pagine a prescinderer del form che si sta utilizzando. 
+The support to AJAX is to dynamically update the choices is under development, for the moment there is only one reconnaissance file.
 
-Per evitare di usare il parametro 'priority' è possibile utilizzare il filtro 'caldera_forms_render_get_form' per caricare lo script solo quando il form viene caricato. Oppure caricare lo script solo nella pagina in cui si trova il form usando wp_localize_script richiamando il file js solo nella pagina in cui si trova il form.
+The goal is to provide an area on the wordpress panel to dynamically administer fields, form and relative selection conditions
