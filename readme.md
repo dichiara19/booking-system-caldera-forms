@@ -7,10 +7,10 @@ Having not realized an administration area, it is necessary to replace the field
 
 The current solution is totally customizable, the js script acts by configuration on a Caldera Forms select field. The php file was meant to be reused in other projects, but you need to replace the field ID manually as mentioned above to make the query work properly.
 
-## Installazione
+## Installation
 Just insert the plugin in the wp-content/plugins folder and activate it or eventually install it via the Wordpress admin panel making sure you have compressed the folder into a zip file.
 
-### Requisiti
+### Requirements
 * Caldera Forms 1.9.3
 
 This is the configuration on which the plugin was made, it has not been tested on other versions.
@@ -18,14 +18,14 @@ This is the configuration on which the plugin was made, it has not been tested o
 ### Plugin
 * [Caldera Forms](https://wordpress.org/plugins/caldera-forms/)
 
-### Utilizzo
+### Usage
 
 Make sure to replace the database prefix in the php file and the field ID in the js file.
 We have to make sure that the ID is correct because the one entered via Caldera Forms admin panel is the one that is used for the query but not the ID that is used for the select field that in my case corresponded to the attribute 'name'.
 
 So: The select field ID displayed in the Caldera Forms admin panel is the one that should be used for the query and not the one that is used for the select field.
 
-#### Altre informazioni
+#### More information
 
 The code uses wp_enqueue_script to load the js script, so you need to make sure that the js file is loaded after the php file is loaded. This was done using the 'priority' parameter of wp_enqueue_script. Doing so runs the script on all pages regardless of the form you are using. To avoid using the 'priority' parameter, you can use the 'caldera_forms_render_get_form' filter to load the script only when the form is loaded. Or load the script only on the page where the form is located using wp_localize_script by calling the js file only on the page where the form is located. The solution is aimed at being immediately testable in all installations and then make the necessary customizations in terms of efficiency, performance etc.
 
