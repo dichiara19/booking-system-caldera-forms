@@ -8,11 +8,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:   Booking system per Caldera Forms
- * Plugin URI:    https://giuseppegabrieledichiara.it/projects/booking-system-caldera-forms/
+ * Plugin URI:    https://giuseppedichiara.it/projects/booking-system-caldera-forms/
  * Description:   Il plugin aggiunge del codice per rendere dinamica la visualizzazione di alcuni opzioni di un form. Con la configurazione attuale è utile per l'evento 22.#1.2023.
  * Version:       1.0.0
  * Author:        Giuseppe Di Chiara
- * Author URI:    https://giuseppegabrieledichiara.it
+ * Author URI:    https://giuseppedichiara.it
  * Text Domain:   booking-system-caldera-forms
  * Domain Path:   /languages
  */
@@ -23,14 +23,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 global $wpdb;
 
-// Query per selezionare gli orari già selezionati per ogni field corrispondente
+// Query per selezionare gli orari già selezionati per ogni field corrispondente, necessario adattare allo scopo
 $fields = array('fld_5769686', 'fld_5961280', 'fld_4116244', 'fld_7088762', 'fld_8159293', 'fld_8928580');
 
 foreach ($fields as $field) {
   $sql = "SELECT value FROM rstar_cf_form_entry_values WHERE field_id = '$field' AND value IS NOT NULL";
   $result = $wpdb->get_results($sql);
 
-  // Creazione di un array 
   $orari_selezionati[$field] = array();
   if (!empty($result)) {
     foreach ($result as $row) {
